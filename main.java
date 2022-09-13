@@ -79,7 +79,7 @@ public class main {
 	
 	public static void master() throws Exception {
 		if(logged == null) {
-			Utils.print("Voc� n�o est� logado, o que gostaria de fazer?");
+			Utils.print("Vocï¿½ nï¿½o estï¿½ logado, o que gostaria de fazer?");
 			
 			int menu = menu("Menu", menu_not_logged);
 			switch(menu) {
@@ -178,7 +178,7 @@ public class main {
 		String[] user = getUser(inputIdentificator);
 		
 		if(user.length == 0) {
-			Utils.print("Usuario n�o encontrado");
+			Utils.print("Usuario nï¿½o encontrado");
 			return;
 		}
 		
@@ -188,7 +188,7 @@ public class main {
 		Utils.print(user[1]);
 		Utils.print(password);
 		if(user[1].equals(password)) {
-			Utils.print("Voc� logou!");
+			Utils.print("Você logou!");
 
 			logged = new Client(user[0], user[1], user[2], user[3], user[4], user[5]);
 			
@@ -198,7 +198,7 @@ public class main {
 		}
 		Utils.print("Senha errada, tentar novamente? ");
 		
-		String[] opt = {"Sim","N�o"};
+		String[] opt = {"Sim","Nï¿½o"};
 		int toContinue = menu("Tentar novamente?\n", opt);
 		if(toContinue == 1) {
 			login(inputIdentificator);
@@ -219,11 +219,11 @@ public class main {
 		String ident = Utils.scan("Identificador: ");
 		String pass = Utils.scan("Senha: ");
 		String cpf = Utils.scan("CPF: ");
-		String address = Utils.scan("Endereço: ");
+		String address = Utils.scan("EndereÃ§o: ");
 		String salary = Utils.scan("Salario(mensal): ");
 		String job = Utils.scan("Trabalho: ");
 
-		String[] opt = {"Conta Corrente", "Conta Poupan�a", "Conta Sal�rio"};
+		String[] opt = {"Conta Corrente", "Conta Poupança", "Conta Salário"};
 		int optAccountKind = menu("Escolha o tipo da conta: ", opt);
 		
 		String accountKind = opt[optAccountKind-1];
@@ -240,7 +240,7 @@ public class main {
 
 		apiUser.add(logged.toJson());
 		
-		Utils.print("Novo usu�rio criado!!");
+		Utils.print("Novo usuï¿½rio criado!!");
 	}
 	
 	private static void changeUser() {
@@ -265,8 +265,8 @@ public class main {
 		String[] oldUser = getUser(oldName);
 		apiUser.set(apiUser.indexOf(oldUser), logged.toJson());
 
-		String[] optContinue = {"Sim","N�o"};
-		int toContinue = menu("Deseja alterar outra parte do usu�rio?\n", optContinue);
+		String[] optContinue = {"Sim","Nï¿½o"};
+		int toContinue = menu("Deseja alterar outra parte do usuï¿½rio?\n", optContinue);
 		if(toContinue == 1) {
 			changeUser();
 		}
@@ -275,19 +275,19 @@ public class main {
 	}
 
 	public static void transfer() {
-		String toUser = Utils.scan("Identificador do usuário para enviar: ");
+		String toUser = Utils.scan("Identificador do usuÃ¡rio para enviar: ");
 		
 		String[] userToAccount = getAccount(toUser);
 		
 		if(userToAccount.length == 0 || userToAccount[0] == loggedAccount.identifier) {
-			Utils.print("Usuário não encontrado, todo seu dinheiro será transferido para o banco em cotação monetária de moeda Venezuela(bolívares venezuelanos)");
+			Utils.print("UsuÃ¡rio nÃ£o encontrado, todo seu dinheiro serÃ¡ transferido para o banco em cotaÃ§Ã£o monetÃ¡ria de moeda Venezuela(bolÃ­vares venezuelanos)");
 			return;
 		}
 		
 		float ammount = Utils.scanFlo("Valor para ser transferido: ");
 
 		if(ammount > loggedAccount.getAmmount()) {
-			Utils.print("Você não tem dinheiro suficiente em sua conta para fazer a transação");
+			Utils.print("VocÃª nÃ£o tem dinheiro suficiente em sua conta para fazer a transaÃ§Ã£o");
 			transfer();
 			return;
 		}
@@ -305,7 +305,7 @@ public class main {
 	public static void deposit() {
 		float ammount = Utils.scanFlo("Valor para ser depositado: ");
 		
-		String opt[] = {"C.R.I.P.T.O <<<", "Selic", "Poupan�a", "Colch�o"};
+		String opt[] = {"C.R.I.P.T.O <<<", "Selic", "Poupança", "Colchão"};
 		int investimentType = menu("Deseja deixar o dinheiro em qual tipo de investimento?", opt);
 		
 		switch(investimentType) {
@@ -313,7 +313,7 @@ public class main {
 		        int random = new Random().nextInt(11);
 				Utils.print("Investimento de risco...\n");
 				if(random == 7) {
-					Utils.print("Você mutiplicou seu patrimonio em 100.000.000% ou 100.000 vezes :)");
+					Utils.print("VocÃª mutiplicou seu patrimonio em 100.000.000% ou 100.000 vezes :)");
 					ammount *= 100000;
 				}else {
 					Utils.print("Todo seu dinheiro foi perdido =)");
@@ -322,21 +322,21 @@ public class main {
 				break;
 			}
 			case 2:{
-				Utils.print("Considerado o investimento mais seguro do país...\n");
-				Utils.print("Após 1 ano teve um lucro de 12% :)");
+				Utils.print("Considerado o investimento mais seguro do paÃ­s...\n");
+				Utils.print("ApÃ³s 1 ano teve um lucro de 12% :)");
 				ammount *= 1.12f;
 				break;
 			}
 			case 3:{
-				Utils.print("Um dos investimentos mais escolhidos do país...\n");
-				Utils.print("Seu dinheiro rendeu, mas abaixo da inflação, foi de base =)");
-				ammount = -(ammount*0.1f);
+				Utils.print("Um dos investimentos mais escolhidos do paÃ­s...\n");
+				Utils.print("Seu dinheiro rendeu, mas abaixo da inflaÃ§Ã£o, foi de base =)");
+				ammount = ammount*0.9f;
 				break;
 			}
 			case 4:{
 				Utils.print("Ainda tem pessoas que fazem isso?\n");
-				Utils.print("O valor das notas que guardava em baixo do colchão perderam valor =)");
-				ammount = -(ammount*0.1f);
+				Utils.print("O valor das notas que guardava em baixo do colchÃ£o perderam valor =)");
+				ammount = ammount*0.8f;
 				break;
 			}
 		}
@@ -348,7 +348,7 @@ public class main {
 		float ammount = Utils.scanFlo("Valor para ser sacar: ");
 		
 		if(ammount > loggedAccount.getAmmount()) {
-			Utils.print("Você não tem dinheiro suficiente em sua conta para fazer a transação");
+			Utils.print("VocÃª nÃ£o tem dinheiro suficiente em sua conta para fazer a transaÃ§Ã£o");
 			return;
 		}
 		
